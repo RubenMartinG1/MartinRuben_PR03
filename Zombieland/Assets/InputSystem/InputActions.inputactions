@@ -1,0 +1,33 @@
+{
+    "name": "InputActions",
+    "maps": [
+        {
+            "name": "Camara",
+            "id": "3c0ae641-6da4-4342-84e6-24bdd3aad13f",
+            "actions": [
+                {
+                    "name": "CameraPivot",
+                    "type": "Value",
+                    "id": "f9469450-dc8d-4c51-af7a-a1c75df196a0",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "41a582c4-033d-4e7a-9f80-a60c14e4b8e6",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CameraPivot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
