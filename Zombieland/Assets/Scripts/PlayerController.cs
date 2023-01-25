@@ -9,13 +9,14 @@ public class PlayerController : MonoBehaviour
     float StrafeR;
     float StrafeL;
     float speed;
-    float WalkingSpeed = 2f;
-    float RunningSpeed = 40f;
-    float rotationSpeed = 1f;
-    float StrafeSpeed = 20f;
+    float WalkingSpeed = 20f;
+    float RunningSpeed = 60f;
+    float rotationSpeed = 0.2f;
+    float StrafeSpeed = 10f;
     float running;
     float strafe;
-  
+
+
 
 
 
@@ -73,7 +74,7 @@ public class PlayerController : MonoBehaviour
     }
     void rotar()
     {
-        //Transform.Rotate(Vector3.up * rotate * rotationSpeed);
+        transform.Rotate(Vector3.up * rotate * rotationSpeed); ;
     }
     void Run()
     {
@@ -93,7 +94,7 @@ public class PlayerController : MonoBehaviour
 }
     void Strafe()
     {
-        strafe = StrafeR - StrafeL;
+        float strafe = StrafeR - StrafeL;
         anim.SetFloat("Strafe", strafe);
         cc.SimpleMove(transform.right * strafe * StrafeSpeed);
     }
