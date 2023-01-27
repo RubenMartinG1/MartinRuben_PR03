@@ -9,10 +9,10 @@ public class PlayerController : MonoBehaviour
     float StrafeR;
     float StrafeL;
     float speed;
-    float WalkingSpeed = 20f;
-    float RunningSpeed = 60f;
+    float WalkingSpeed = 2f;
+    float RunningSpeed = 5f;
     float rotationSpeed = 0.2f;
-    float StrafeSpeed = 10f;
+    float StrafeSpeed = 2f;
     float running;
     float strafe;
 
@@ -105,7 +105,7 @@ public class PlayerController : MonoBehaviour
 
         if (strafe == 0)
         {
-            print("hola");
+       
             Walk();
         }
         if (strafe != 1)
