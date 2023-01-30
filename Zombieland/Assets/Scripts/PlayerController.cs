@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     float speed;
     float WalkingSpeed = 2f;
     float RunningSpeed = 5f;
-    float rotationSpeed = 1f;
+    float rotationSpeed = 0.5f;
     float StrafeSpeed = 2f;
     float running;
     float strafe;
