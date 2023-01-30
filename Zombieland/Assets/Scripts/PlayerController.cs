@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     float StrafeSpeed = 2f;
     float running;
     float strafe;
-
+    bool alive = true;
 
 
 
@@ -51,26 +51,26 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
- 
+
     void Walk()
     {
         if (anim.GetBool("Run") && move > 0.2)
         {
-          
+
             speed = RunningSpeed;
         }
         else
         {
             speed = WalkingSpeed;
-            
+
         }
-    cc.SimpleMove(transform.forward * move * speed);
-    anim.SetFloat("Move", move);
- 
+        cc.SimpleMove(transform.forward * move * speed);
+        anim.SetFloat("Move", move);
+
     }
     void rotar()
     {
@@ -78,20 +78,20 @@ public class PlayerController : MonoBehaviour
     }
     void Run()
     {
-    if (running > 0.1)
-    {
-         
-        anim.SetBool("Run", true);
-        speed = RunningSpeed;
+        if (running > 0.1)
+        {
+
+            anim.SetBool("Run", true);
+            speed = RunningSpeed;
+        }
+        else
+        {
+
+            anim.SetBool("Run", false);
+            speed = WalkingSpeed;
+        }
+        cc.SimpleMove(transform.forward * move * speed);
     }
-    else
-    {
-        
-        anim.SetBool("Run", false);
-        speed = WalkingSpeed;
-    }
-    cc.SimpleMove(transform.forward * move * speed);
-}
     void Strafe()
     {
         float strafe = StrafeR - StrafeL;
@@ -101,21 +101,24 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        
+        if (alive == true)
+        {
+            if (strafe == 0)
+            {
 
-        if (strafe == 0)
-        {
-       
-            Walk();
+                Walk();
+            }
+            if (strafe != 1)
+            {
+
+                Strafe();
+            }
+            rotar();
+            Run();
+          
         }
-        if (strafe != 1)
-        {
-            
-            Strafe();
-        }
-        rotar();
-        Run();
     }
+        
     private void OnEnable()
     {
         inputActions.Enable();
@@ -123,5 +126,17 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         inputActions.Disable();
+    }
+ 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Zombie")
+        {
+            print("muerto");
+            alive = false;
+            anim.SetBool("Death", true);
+           
+
+        }
     }
 }

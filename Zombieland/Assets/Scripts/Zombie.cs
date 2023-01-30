@@ -14,10 +14,12 @@ public class Zombie : MonoBehaviour
     float speed;
     [SerializeField] Transform padrePatrulla;
    
+   
     Transform playerPos;
     // Start is called before the first frame update
     void Start()
     {
+        
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
         animator = GetComponent<Animator>();
         navMesh = GetComponent<NavMeshAgent>();
@@ -28,15 +30,17 @@ public class Zombie : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      
+        print(actualState);
         Distance();
         animator.SetInteger("State", actualState);
         Speed();
         UpdateState();
         Detect();
-      
+        
 
-        if(actualState == 2)
+
+
+        if (actualState == 2)
         {
             chase();
         }
@@ -46,9 +50,10 @@ public class Zombie : MonoBehaviour
     {
         if (!detectado)
         {
-            print("hola");
+           
             actualState = 1;
-
+         
+            
             int n = Random.Range(0, puntosPatrullas.Length);
 
             navMesh.SetDestination(puntosPatrullas[n].position);
@@ -84,7 +89,7 @@ public class Zombie : MonoBehaviour
     {
         if (actualState == 1 && goalDistance < 1f)
         {
-            print("llegue");
+            
             actualState = 0;
             float pausa = Random.Range(2f, 6f);
             Invoke("Patrulla", pausa);
@@ -93,10 +98,28 @@ public class Zombie : MonoBehaviour
         {
             actualState = 2;
         }
-        else if((actualState == 2 && goalDistance < 0.7f))
+        else if((actualState == 2 && goalDistance < 1f))
         {
             actualState = 3;
+
         }
+        if ((actualState == 3 && goalDistance > 1.5f))
+        {
+            actualState = 2;
+        }
+
+        if ((actualState == 2 && goalDistance > 15f))
+
+        {
+            actualState = 1;
+         
+            int n = Random.Range(0, puntosPatrullas.Length);
+            goal = puntosPatrullas[n].position;
+            navMesh.SetDestination(puntosPatrullas[n].position);
+        }
+
+      
+
     }
     void Detect()
     {
@@ -114,6 +137,7 @@ public class Zombie : MonoBehaviour
     void chase()
     {
         navMesh.SetDestination(playerPos.position);
+       
     }
     
 }

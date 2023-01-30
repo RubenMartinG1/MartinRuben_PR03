@@ -12,7 +12,7 @@ NavMeshProjectSettings:
   - name: Jump
     cost: 2
   - name: Agua
-    cost: 1
+    cost: 2
   - name: 
     cost: 1
   - name: 
@@ -75,7 +75,7 @@ NavMeshProjectSettings:
     agentTypeID: 0
     agentRadius: 0.5
     agentHeight: 1.7
-    agentSlope: 40
+    agentSlope: 25
     agentClimb: 0.35
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
